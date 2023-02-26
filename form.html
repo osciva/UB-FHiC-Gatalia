@@ -1,41 +1,47 @@
 <!DOCTYPE html>
 <html>
-    <head></head>
-    <body>
-    <header>
-        <h1>Introduce los datos de tu gato</h1>
-    </header>
-    <main>
+  <head><link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <header>Gatalia: la web de los gatos </header>
+    <div id = "main">
         <article>
-        <form action="results.html">
-            <label for="catname">Nombre</label><br>
-            <input type="text" id="catname" name="catname"><br>
-            <label for="age">Edad:</label><br>
-            <input type="number" id="age" name="age"><br><br>
-            <input type="submit" value="Submit">
+            <div class="titulo-formulario">
+                <p>Introduce los datos de tu gato</p>
+            </div>
             
+            <div class="formulario">
+              <form>
+                <div class="labels_form">
+                    <label for="nombre">Nombre:</label>
+                </div>
+                <input class="controls" type="text" id="nombre" name="nombre" placeholder="Mishi" ><br>
+                <div class="labels_form">
+                    <label for="edad">Edad:</label>
+                </div>
+                <input class="controls" type="text" id="edad" name="edad" placeholder="3"><br>
 
-        </form>
-        <article class ="article_main " ></article>/article>
-
-
+                <input type="submit" value="Guardar">
+              </form>
+            </div>
         </article>
-    </main>
-    <footer><cite>Copyright FHiC 2023</cite></footer>
-
-
-
-
-    </body>
-
-
-
-
-
-
-
-
-
-
-
+      <nav>
+        <h1>Razas</h1>
+        <li><a href="siames.html">
+          Siames
+        </a></li>
+        <li><a href="persa.html">
+          Persa
+        </a></li>
+        <div class="marco-redondo" >
+          <p><a href="form.html" >
+          Sobre tu gato
+          </a></p>
+        </div>
+      </nav>
+    </div>
+    <footer>
+      Copyright FHiC 2023
+    </footer>
+  </body>
 </html>
