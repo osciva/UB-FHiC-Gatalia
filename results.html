@@ -10,14 +10,23 @@
       crossorigin="anonymous"
       >
     <link rel="stylesheet" href="styles.css">
-  </head>
+      <script src="https://unpkg.com/vue@next"></script>
+      <script src="app.js" defer></script>
+    </head>
   <body>
+  <section id="app">
     <div class="container-fluid">
       <div class="row header align-items-center">
-        <header>Gatalia: la web de los gatos </header>
+        <div class="col-1 align-items-center">
+          <button class="btn-outline-primary btn-menu" v-on:click="ocultar">
+            <img src="./imagenes/baseline_menu_white_24dp.png" alt="Texto alternativo">
+          </button>
+        </div>
+        <div class="col-11 align-items-center text-titulo"> Gatalia: la web de los gatos
+        </div>
       </div>
       <div class="row main-flex-row">
-        <div class="col-sm-2  nav-col">
+        <div class="col-sm-2  nav-col" v-if="showNav">
           <nav class="nav-fluid align-items-center nav-pills">
             <a class="btn btn-outline-primary nav-link dropdown-toggle my-2" data-bs-toggle="dropdown" 
              href="#" role="button" aria-expanded="false" style="background-color: goldenrod; color: beige;">Razas</a>
@@ -69,8 +78,7 @@
           </div>
           </div>
           <div class="reset">
-              <a href="index.html"><p>Volver al inicio</p>
-          </div>
+            <a href="index.html"><p>Volver al inicio</p> </a>
           </div>
         </div>
       </div>
@@ -85,5 +93,6 @@
       integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
       crossorigin="anonymous"
     ></script>
+  </section>
   </body>
 </html>
