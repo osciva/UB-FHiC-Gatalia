@@ -16,12 +16,14 @@ const miapp = Vue.createApp({
         methods: {
             ocultar(){
                 this.showNav = !this.showNav
+            },
+            agregarGat: function(){
+                this.gats[this.nom] = this.edat;
+                this.nom = "";
+                this.edat = "";
             }
         },
         computed:{
-            colorTexto: function (){
-                return (this.contador < 0) ? 'red':'blue'
-            }
         }
     },
 );

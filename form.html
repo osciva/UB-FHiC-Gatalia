@@ -39,17 +39,17 @@
         </div>
           <div class="col-sm-10 article-col align-items-center justify-content-center">
             <div class="container-fluid d-flex align-items-center justify-content-center">
-            <form class="row g-3">
+            <form  class="row g-3" @submit.prevent="agregarGat">
               <div class="col-auto">
                 <label for="inputNombre" class="visually-hidden">Nombre</label>
-                <input type="text"  style="height: 40px;" class="form-control-plaintext" id="inputNombre" value="Nombre" v-model="new_nom">
+                <input type="text"  style="height: 40px;" class="form-control-plaintext" id="inputNombre" placeholder="Nombre" v-model="nom">
               </div>
               <div class="col-auto">
                 <label for="inputEdad" class="visually-hidden">Edad</label>
-                <input type="number" style="height: 40px;" class="form-control" id="inputEdad" placeholder="Edad" v-model="new_edat">
+                <input type="number" style="height: 40px;" class="form-control" id="inputEdad" placeholder="Edad" v-model="edat">
               </div>
-              <div class="col-auto">
-                <button type="submit" class="btn btn-primary mb-3" ">Guardar</button>
+              <div class="col-auto" >
+                <button type="submit" class="btn btn-primary mb-3">Guardar</button>
               </div>
             </form>
             </div>
@@ -66,7 +66,7 @@
               </tr>
               </thead>
               <tbody>
-              <tr v-for="(edat,nom) in gats":key="nom">
+              <tr v-for="(edat,nom) in gats":key="nom" v-bind:key="gats">
                 <td>{{nom}}</td>
                 <td>{{edat}}</td>
               </tr>
