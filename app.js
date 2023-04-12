@@ -1,7 +1,11 @@
 const miapp = Vue.createApp({
         data () {
             return{
-                showNav: false
+                showNav: false,
+                nom: '',
+                edat: '',
+                gats:{
+                }
             };
         },
         // watch: { //cuando cambia la data el watcher numero se ejecuta

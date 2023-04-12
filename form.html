@@ -37,26 +37,49 @@
             <a class="btn btn-outline-primary nav-link"  style="background-color: goldenrod; color: beige;" href="form.html">Sobre tu gato</a>
           </nav>
         </div>
-          <div class="col-sm-10 article-col ">
-            <div class="titulo-formulario">
-              <p>Introduce los datos de tu gato</p>
-            </div>
+          <div class="col-sm-10 article-col align-items-center justify-content-center">
             <div class="container-fluid d-flex align-items-center justify-content-center">
-              <div class="formulario">
-                <form action="results.html">
-                  <div class="labels_form">
-                      <label for="nombre">Nombre:</label>
-                  </div>
-                  <input class="controls" type="text" id="nombre" name="nombre" placeholder="Mishi" ><br>
-                  <div class="labels_form">
-                      <label for="edad">Edad:</label>
-                  </div>
-                  <input class="controls" type="text" id="edad" name="edad" placeholder="3"><br>
-  
-                  <input type="submit" value="Guardar">
-                </form>
+            <form class="row g-3">
+              <div class="col-auto">
+                <label for="inputNombre" class="visually-hidden">Nombre</label>
+                <input type="text"  style="height: 40px;" class="form-control-plaintext" id="inputNombre" value="Nombre" v-model="new_nom">
               </div>
+              <div class="col-auto">
+                <label for="inputEdad" class="visually-hidden">Edad</label>
+                <input type="number" style="height: 40px;" class="form-control" id="inputEdad" placeholder="Edad" v-model="new_edat">
+              </div>
+              <div class="col-auto">
+                <button type="submit" class="btn btn-primary mb-3" ">Guardar</button>
+              </div>
+            </form>
             </div>
+          </div>
+        <div class="container-fluid d-flex align-items-center justify-content-center">
+          <div class="results_tabla">
+            <table>
+
+              <p class="titulo_results">Lista de gatos registrados</p>
+              <thead>
+              <tr>
+                <th>Nombre</th>
+                <th>Edad</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr v-for="(edat,nom) in gats":key="nom">
+                <td>{{nom}}</td>
+                <td>{{edat}}</td>
+              </tr>
+
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="reset">
+          <a href="index.html"><p>Volver al inicio</p> </a>
+        </div>
+      </div>
+    </div>
           </div>
         </div>
       </div>
