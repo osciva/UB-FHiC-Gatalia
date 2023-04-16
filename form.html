@@ -3,6 +3,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <head>
     <head>
+      <meta charset="UTF-8">
       <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
       rel="stylesheet"
@@ -49,43 +50,71 @@
                 <input type="number" style="height: 40px;" class="form-control" id="inputEdad" placeholder="Edad" v-model="edat">
               </div>
               <div class="col-auto" >
-                <button type="submit" class="btn btn-primary mb-3">Guardar</button>
+                <button type="submit" class="btn mb-3" style="background: goldenrod; color: white">Guardar</button>
               </div>
             </form>
             </div>
+            <div class="container-fluid d-flex align-items-center justify-content-center" v-if="showGat">
+              <p class="h5" style="color: goldenrod;">¡Gracias por presentarnos a tu gato!</p>
+            </div>
         <div class="container-fluid d-flex align-items-center justify-content-center">
           <div class="results_tabla">
-            <table>
-
-              <p class="titulo_results">Lista de gatos registrados</p>
-              <thead>
+            <p class="titulo_results">Lista de gatos registrados</p>
+            <table class="table table-sm align-middle ">
+              <thead class="table" style="background: goldenrod; color: white">
               <tr>
-                <th>Nombre</th>
-                <th>Edad</th>
+                <th scope="col">#</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Edad</th>
+                <th scope="col">Eliminar</th>
               </tr>
               </thead>
               <tbody>
-              <tr v-for="(edat,nom) in gats":key="nom" v-bind:key="gats">
-                <td>{{nom}}</td>
-                <td>{{edat}}</td>
-              </tr>
-
+              <template v-for="(edat,nom, index) in gats":key="nom">
+                <tr v-on:click="rellenarGat(nom,edat)">
+                  <th scope="row">{{ getIndexGat(index) }}</td>
+                  <td>{{nom}}</td>
+                  <td >{{edat}}</td>
+                  <td><button class="btn-outline-primary btn-eliminar" data-bs-toggle="modal" data-bs-target="#modalEliminar" v-on:click="setGat(nom)">
+                    <img src="./imagenes/baseline_delete_black_24dp.png" alt="Texto alternativo">
+                  </button></td>
+                </tr>
+              </template>
               </tbody>
             </table>
           </div>
         </div>
         <div class="reset">
-          <a href="index.html"><p>Volver al inicio</p> </a>
+          <a class="btn btn-outline" href="index.html" style="background-color: goldenrod; color: white;">Volver al inicio</a>
         </div>
       </div>
+     </div>
     </div>
-          </div>
-        </div>
-      </div>
       <div class="row footer align-items-center">
         <footer>
           Copyright FHiC 2023
         </footer>
+      </div>
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalEliminar">
+      Launch demo modal
+    </button>
+
+    <!-- Modal -->
+    <div class="modal fade" id="modalEliminar" tabindex="-1" aria-labelledby="modalEliminarLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Confirmar eliminación</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <p>¿Está seguro de que desea eliminar su gato de la lista?</p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+            <button type="button" class="btn" style="background: red; color: white" data-bs-dismiss="modal" v-on:click="eliminarGat()">Eliminar</button>
+          </div>
+        </div>
       </div>
     </div>
     <script
