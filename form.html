@@ -73,7 +73,7 @@
                   <th scope="row">{{ getIndexGat(index) }}</td>
                   <td>{{nom}}</td>
                   <td >{{edat}}</td>
-                  <td><button class="btn-outline-primary btn-eliminar" data-bs-toggle="modal" data-bs-target="#modalEliminar" v-on:click="setGat(nom)">
+                  <td><button class="btn-outline-primary btn-eliminar" data-bs-toggle="modal" data-bs-target="#modalEliminar" v-on:click.stop="setGat(nom)">
                     <img src="./imagenes/baseline_delete_black_24dp.png" alt="Texto alternativo">
                   </button></td>
                 </tr>
