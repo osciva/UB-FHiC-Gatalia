@@ -25,7 +25,7 @@ const miapp = Vue.createApp({
                 return index + 1;
             },
             agregarGat: function(){
-                if (this.gat != '' && this.nom != ''){
+                if (this.edat != '' && this.nom != ''){
                     this.gats[this.nom] = this.edat;
                     this.showGat = true;
                 }
