@@ -1,47 +1,120 @@
 <!DOCTYPE html>
 <html>
-  <head><link rel="stylesheet" href="styles.css">
-  </head>
+  <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
+    <head>
+      <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+      crossorigin="anonymous"
+      >
+    <link rel="stylesheet" href="styles.css">
+      <script src="https://unpkg.com/vue@next"></script>
+      <script src="app.js" defer></script>
+    </head>
   <body>
-    <header>Gatalia: la web de los gatos </header>
-    <div id = "main">
-        <article>
-            <div class="titulo-formulario">
-                <p>Introduce los datos de tu gato</p>
-            </div>
-            
-            <div class="formulario">
-              <form action="results.html">
-                <div class="labels_form">
-                    <label for="nombre">Nombre:</label>
-                </div>
-                <input class="controls" type="text" id="nombre" name="nombre" placeholder="Mishi" ><br>
-                <div class="labels_form">
-                    <label for="edad">Edad:</label>
-                </div>
-                <input class="controls" type="text" id="edad" name="edad" placeholder="3"><br>
-
-                <input type="submit" value="Guardar">
-              </form>
-            </div>
-        </article>
-      <nav>
-        <h1>Razas</h1>
-        <li><a href="siames.html">
-          Siames
-        </a></li>
-        <li><a href="persa.html">
-          Persa
-        </a></li>
-        <div class="marco-redondo" >
-          <p><a href="form.html" >
-          Sobre tu gato
-          </a></p>
+  <section id="app">
+    <div class="container-fluid">
+      <div class="row header align-items-center">
+        <div class="col-1 align-items-center">
+          <button class="btn-outline-primary btn-menu" v-on:click="ocultar">
+            <img src="./imagenes/baseline_menu_white_24dp.png" alt="Texto alternativo">
+          </button>
         </div>
-      </nav>
+        <div class="col-11 align-items-center text-titulo"> Gatalia: la web de los gatos
+        </div>
+      </div>
+      <div class="row main-flex-row">
+        <div class="col-sm-2  nav-col" v-if="showNav">
+          <nav class="nav-fluid align-items-center nav-pills">
+            <a class="btn btn-outline-primary nav-link dropdown-toggle my-2" data-bs-toggle="dropdown" 
+             href="#" role="button" aria-expanded="false" style="background-color: goldenrod; color: beige;">Razas</a>
+              <nav class="dropdown-menu" style="background-color: beige;">
+                <li><a class="btn btn-outline nav-link" href="persa.html" style="background-color: beige; color: goldenrod;">Persa</a></li>
+                <li><a class="btn btn-outline nav-link" href="siames.html" style="background-color: beige; color: goldenrod;">Siames</a></li>
+              </nav>
+            <a class="btn btn-outline-primary nav-link"  style="background-color: goldenrod; color: beige;" href="form.html">Sobre tu gato</a>
+          </nav>
+        </div>
+          <div class="col-sm-10 article-col align-items-center justify-content-center">
+            <div class="container-fluid d-flex align-items-center justify-content-center">
+            <form  class="row g-3" @submit.prevent="agregarGat">
+              <div class="col-auto">
+                <label for="inputNombre" class="visually-hidden">Nombre</label>
+                <input type="text"  style="height: 40px;" class="form-control-plaintext" id="inputNombre" placeholder="Nombre" v-model="nom">
+              </div>
+              <div class="col-auto">
+                <label for="inputEdad" class="visually-hidden">Edad</label>
+                <input type="number" style="height: 40px;" class="form-control" id="inputEdad" placeholder="Edad" v-model="edat">
+              </div>
+              <div class="col-auto" >
+                <button type="submit" class="btn mb-3" style="background: goldenrod; color: white">Guardar</button>
+              </div>
+            </form>
+            </div>
+            <div class="container-fluid d-flex align-items-center justify-content-center" v-if="showGat">
+              <p class="h5" style="color: goldenrod;">¡Gracias por presentarnos a tu gato!</p>
+            </div>
+        <div class="container-fluid d-flex align-items-center justify-content-center">
+          <div class="results_tabla">
+            <p class="titulo_results">Lista de gatos registrados</p>
+            <table class="table table-sm align-middle ">
+              <thead class="table" style="background: goldenrod; color: white">
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Edad</th>
+                <th scope="col">Eliminar</th>
+              </tr>
+              </thead>
+              <tbody>
+              <template v-for="(edat,nom, index) in gats":key="nom">
+                <tr v-on:click="rellenarGat(nom,edat)">
+                  <th scope="row">{{ getIndexGat(index) }}</td>
+                  <td>{{nom}}</td>
+                  <td >{{edat}}</td>
+                  <td><button class="btn-outline-primary btn-eliminar" data-bs-toggle="modal" data-bs-target="#modalEliminar" v-on:click.stop="setGat(nom)">
+                    <img src="./imagenes/baseline_delete_black_24dp.png" alt="Texto alternativo">
+                  </button></td>
+                </tr>
+              </template>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="reset">
+          <a class="btn btn-outline" href="index.html" style="background-color: goldenrod; color: white;">Volver al inicio</a>
+        </div>
+      </div>
+     </div>
     </div>
-    <footer>
-      Copyright FHiC 2023
-    </footer>
+      <div class="row footer align-items-center">
+        <footer>
+          Copyright FHiC 2023
+        </footer>
+      </div>
+    <div class="modal fade" id="modalEliminar" tabindex="-1" aria-labelledby="modalEliminarLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Confirmar eliminación</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <p>¿Está seguro de que desea eliminar su gato de la lista?</p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+            <button type="button" class="btn" style="background: red; color: white" data-bs-dismiss="modal" v-on:click="eliminarGat()">Eliminar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+      crossorigin="anonymous"
+    ></script>
+  </section>
   </body>
 </html>

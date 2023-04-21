@@ -1,35 +1,63 @@
 <!DOCTYPE html>
 <html>
-  <head><link rel="stylesheet" href="styles.css">
-  </head>
+  <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
+  <head>
+      <meta charset="UTF-8">
+      <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+      crossorigin="anonymous"
+      >
+    <link rel="stylesheet" href="styles.css">
+      <script src="https://unpkg.com/vue@next"></script>
+      <script src="app.js" defer></script>
+    </head>
   <body>
-    <header>Gatalia: la web de los gatos </header>
-    <div id = "main">
-      <article>
-          <h2>Persa</h2>
-          <img width="20%" src="./imagenes/Persa.jpg">
-          <p class="persa">El persa es una raza de gato caracterizada por tener una cara ancha y plana y un gran abundante pelaje de variados colores.
-            Loren Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since
-            the 1500s, when an unknown printer took a gallery of type and scrambled it to make a type specimen book. 
-          </p>
-      </article>
-      <nav>
-        <h1>Razas</h1>
-        <li><a href="siames.html">
-          Siames
-        </a></li>
-        <li><a href="persa.html">
-          Persa
-        </a></li>
-        <div class="marco-redondo" >
-          <p><a href="form.html" >
-          Sobre tu gato
-          </a></p>
+  <section id="app">
+    <div class="container-fluid">
+      <div class="row header align-items-center">
+        <div class="col-1 align-items-center">
+          <button class="btn-outline-primary btn-menu" v-on:click="ocultar">
+            <img src="./imagenes/baseline_menu_white_24dp.png" alt="Texto alternativo">
+          </button>
         </div>
-      </nav>
+        <div class="col-11 align-items-center text-titulo"> Gatalia: la web de los gatos
+        </div>
+      </div>
+      <div class="row main-flex-row">
+        <div class="col-sm-2  nav-col" v-if="showNav">
+          <nav class="nav-fluid align-items-center nav-pills">
+            <a class="btn btn-outline-primary nav-link dropdown-toggle my-2" data-bs-toggle="dropdown" 
+             href="#" role="button" aria-expanded="false" style="background-color: goldenrod; color: beige;">Razas</a>
+              <nav class="dropdown-menu" style="background-color: beige;">
+                <li><a class="btn btn-outline nav-link" href="persa.html" style="background-color: beige; color: goldenrod;">Persa</a></li>
+                <li><a class="btn btn-outline nav-link" href="siames.html" style="background-color: beige; color: goldenrod;">Siames</a></li>
+              </nav>
+            <a class="btn btn-outline-primary nav-link"  style="background-color: goldenrod; color: beige;" href="form.html">Sobre tu gato</a>
+          </nav>
+        </div>
+          <div class="col-sm-10 article-col ">
+            <h2>Persa</h2>
+            <img src="./imagenes/Persa.jpg" class="img-thumbnail" width="400">
+            <p class="persa">El persa es una raza de gato caracterizada por tener una cara ancha y plana y un gran abundante pelaje de variados colores.
+              Loren Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since
+              the 1500s, when an unknown printer took a gallery of type and scrambled it to make a type specimen book.
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="row footer align-items-center">
+        <footer>
+          Copyright FHiC 2023
+        </footer>
+      </div>
     </div>
-    <footer>
-      Copyright FHiC 2023
-    </footer>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+      crossorigin="anonymous"
+    ></script>
+  </section>
   </body>
 </html>
